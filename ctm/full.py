@@ -3,6 +3,16 @@ from ctm.Constants import *
 from PIL import Image
 import os
 
+def cpr(parentFile, pasteDir, names):
+	parentFileContent = open(parentFile, "rb").read()
+	extension = os.path.splitext(parentFile)[1]
+	for name in names:
+		name = str(name)
+		currentDir = os.path.join(pasteDir, name)+extension
+		currentFile = open(currentDir, "wb")
+		currentFile.write(parentFileContent)
+		currentFile.close()
+
 def calculateSides(path):
 	image = Image.open(path)
 	res = image.size[0]
@@ -82,6 +92,7 @@ class Full():
 		self.dir = directory
 		self.sides = calculateSides(path)
 		self.clearSides = getClearPixels(self.sides, noSidesImage)
+		self.nsi = noSidesImage
 		self.preset = preset
 		self.id = blockID
 		self.name = blockName
@@ -89,6 +100,7 @@ class Full():
 		self.m = metadata
 
 	def run(self):
+		cpr(self.nsi, self.dir, [*range(47)])
 		for currentFileName in list(range(47)):
 			currentFilePath = os.path.join(self.dir, str(currentFileName)+".png")
 			currentFile = Image.open(self.p)
