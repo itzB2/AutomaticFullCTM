@@ -11,17 +11,7 @@ def cpr(parentFile, pasteDir, names):
 		currentFile.close()
 
 def xor(a, b):
-	aX = 1 if a != 0 else 0
-	bX = 1 if b != 0 else 0
-	mask = aX | bX
-	if mask == 1 and aX == 1:
-		val = max(a, b)
-	elif mask == 1 and bX == 1:
-		val = max(a, b)
-	else:
-		val = 0
-
-	return val
+	return a | b
 
 def tupleRange(a, b):
 	xList = []

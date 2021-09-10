@@ -103,7 +103,7 @@ class Full():
 		cpr(self.nsi, self.dir, [*range(47)])
 		for currentFileName in list(range(47)):
 			currentFilePath = os.path.join(self.dir, str(currentFileName)+".png")
-			currentFile = Image.open(self.p)
+			currentFile = Image.open(self.p).convert("RGBA")
 			currentFileImage = currentFile.load()
 			presetLookup = self.preset[currentFileName]
 			# print(currentFileName, currentFilePath, presetLookup)
